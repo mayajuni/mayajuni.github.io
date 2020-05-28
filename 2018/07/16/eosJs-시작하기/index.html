@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>eosJs 시작하기 | Dongjun&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="EOSJS 시작하기EOSJS란?EOS 블록체인을 javascript로 좀더 편하게 컨트롤 할 수 있게 만들어 놓은 라이브러리라고 생각하면 편하다. 살짝만 깊게 들어가면 EOS에서 제공하는(nodeos) HTTP API를 이용하게 편하게 해 놓은 거라고 말 할 수 있다. (이더리움에는 web3.js, 네오에는 neon-js)   EOSJS도 EOS에서 제공하">
+<meta name="keywords" content="eosjs,eos,block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eosJs 시작하기">
+<meta property="og:url" content="https://mayajuni.github.io/2018/07/16/eosJs-시작하기/index.html">
+<meta property="og:site_name" content="Dongjun&#39;s Blog">
+<meta property="og:description" content="EOSJS 시작하기EOSJS란?EOS 블록체인을 javascript로 좀더 편하게 컨트롤 할 수 있게 만들어 놓은 라이브러리라고 생각하면 편하다. 살짝만 깊게 들어가면 EOS에서 제공하는(nodeos) HTTP API를 이용하게 편하게 해 놓은 거라고 말 할 수 있다. (이더리움에는 web3.js, 네오에는 neon-js)   EOSJS도 EOS에서 제공하">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://mayajuni.github.io/images/error.png">
+<meta property="og:updated_time" content="2020-05-28T23:36:25.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eosJs 시작하기">
+<meta name="twitter:description" content="EOSJS 시작하기EOSJS란?EOS 블록체인을 javascript로 좀더 편하게 컨트롤 할 수 있게 만들어 놓은 라이브러리라고 생각하면 편하다. 살짝만 깊게 들어가면 EOS에서 제공하는(nodeos) HTTP API를 이용하게 편하게 해 놓은 거라고 말 할 수 있다. (이더리움에는 web3.js, 네오에는 neon-js)   EOSJS도 EOS에서 제공하">
+<meta name="twitter:image" content="https://mayajuni.github.io/images/error.png">
+<link rel="publisher" href="mayajuni10@gmail.com">
+<meta property="fb:admins" content="100000731937646">
+    
+    <link rel="canonical" href="https://mayajuni.github.io/2018/07/16/eosjs-시작하기/">
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.ico# path to favicon">
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-79741974-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head></html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">Dongjun&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" style="border-radius : 50%;-webkit-border-radius : 50%;-moz-border-radius : 50%;" id="avatar-header" src="https://avatars.githubusercontent.com/u/4123095?v=3" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form"  style="text-align: right">
+        <input type="text" class="ins-search-input search-form-input" style="width: 175px;" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+            
+            <section id="main"><article id="post-eosJs-시작하기" class="article article-type-post" itemscope
+         itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+            eosJs 시작하기
+        </h1>
+    
+
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/07/16/eosJs-시작하기/">
+            <time datetime="2018-07-16T05:19:00.000Z" itemprop="datePublished">2018-07-16</time>
+        </a>
+    </div>
+
+
+                
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/block-chain/">block chain</a>, <a class="tag-link" href="/tags/eos/">eos</a>, <a class="tag-link" href="/tags/eosjs/">eosjs</a>
+    </div>
+
+            </div>
+        </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+            
+            <h2 id="EOSJS-시작하기"><a href="#EOSJS-시작하기" class="headerlink" title="EOSJS 시작하기"></a>EOSJS 시작하기</h2><h4 id="EOSJS란"><a href="#EOSJS란" class="headerlink" title="EOSJS란?"></a>EOSJS란?</h4><p>EOS 블록체인을 javascript로 좀더 편하게 컨트롤 할 수 있게 만들어 놓은 라이브러리라고 생각하면 편하다. 살짝만 깊게 들어가면 EOS에서 제공하는(nodeos) HTTP API를 이용하게 편하게 해 놓은 거라고 말 할 수 있다. (이더리움에는 <a href="https://github.com/ethereum/web3.js" target="_blank" rel="noopener">web3.js</a>, 네오에는 <a href="https://github.com/CityOfZion/neon-js" target="_blank" rel="noopener">neon-js</a>) </p>
+<blockquote>
+<p>EOSJS도 EOS에서 제공하는 HTTP API를 사용하기 때문에 BP들을 잘 선택해야된다.(응답속도, 제공여부 등등)</p>
+</blockquote>
+<h4 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h4><p>설치 방법으로는 2가지가 있다.</p>
+<ol>
+<li><p>NPM을 통해서 간단하게 설치 할 수 있다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm install eosjs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CNS를 이용하기</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/eosjs@15.0.3/lib/eos.min.js"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">integrity</span>=<span class="string">"sha512-QX0dPq5pyX33coEuy5x1UqKHFDeveQYMp7Sz+qOUwRL9mol4QDvViU+QAjd+k6P7QjPjrDCoyhK1kz2GDxCP9A=="</span></span></span><br><span class="line"><span class="tag">        <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h4 id="EOS-Connect"><a href="#EOS-Connect" class="headerlink" title="EOS Connect"></a>EOS Connect</h4><ol>
+<li><p>EOSJS를 이용한 EOS Connect</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Eos = <span class="built_in">require</span>(<span class="string">'eosjs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 아래와 같이 하면 localhost Testnet에 접근한다.</span></span><br><span class="line"><span class="keyword">const</span> eos = Eos();</span><br></pre></td></tr></table></figure>
+
+<p>localhost에 EOS가 구동 되어있지 않는다면 위의 코드를 실행하면 아래와 같은 에러가 난다. (당연히 connect하는 EOS의 httpEndpoint가 틀려도 아래와 같은 에러가 나온다.)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123; FetchError: request to http://127.0.0.1:8888/v1/chain/get_info failed, reason: connect ECONNREFUSED 127.0.0.1:8888</span><br><span class="line">    at ClientRequest.&lt;anonymous&gt; (/Users/mayajuni/Projects/eos-scan/node_modules/node-fetch/index.js:133:11)</span><br><span class="line">    at ClientRequest.emit (events.js:182:13)</span><br><span class="line">    at Socket.socketErrorListener (_http_client.js:382:9)</span><br><span class="line">    at Socket.emit (events.js:182:13)</span><br><span class="line">    at emitErrorNT (internal/streams/destroy.js:82:8)</span><br><span class="line">    at emitErrorAndCloseNT (internal/streams/destroy.js:50:3)</span><br><span class="line">    at process._tickCallback (internal/process/next_tick.js:63:19)</span><br><span class="line">  name: 'FetchError',</span><br><span class="line">  message:</span><br><span class="line">   'request to http://127.0.0.1:8888/v1/chain/get_info failed, reason: connect ECONNREFUSED 127.0.0.1:8888',</span><br><span class="line">  type: 'system',</span><br><span class="line">  errno: 'ECONNREFUSED',</span><br><span class="line">  code: 'ECONNREFUSED' &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Mainnet connect 하기</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Eos = <span class="built_in">require</span>(<span class="string">'eosjs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> eos = Eos(&#123;<span class="attr">httpEndpoint</span>: <span class="string">'mainnet httpEndpoint'</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>아마 위와 같이 connect를 시도 한다면 아래와 같은 에러 메시지가 나온다.<br> <img src="/images/error.png" alt="connect-error"></p>
+<p>에러가 나더라도 getInfo는 가능하네 이걸 통해서 chainId를 확인해서 넣자. </p>
+<blockquote>
+<p>Mainnet인 경우는 aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906 이것이 공통으로 쓰는 chainId이기 때문에 넣으면 된다.</p>
+</blockquote>
+</li>
+</ol>
+<p>위와 같은 방법으로 connect를 하면 아래와 같이 최초 1회 get_info api를 호출한다. (처음에 이것도 모르고 매번 커넥트를 줬더니 모바일에서 데이터 사용량이 아주 높게 나온적이 있다.)</p>
+<p><img src="/images/net.png" alt="network-image"></p>
+<blockquote>
+<p>메인넷 주소는 <a href="https://api.eosnewyork.io" target="_blank" rel="noopener">https://api.eosnewyork.io</a> 여기에서 확인 해 볼 수 있다. BP들마다 제공하는 정보의 양, 응답속도 등등이 다르기 때문에 확인을 해서 본인에게 가장 잘 맞는 BP를 찾는 것이 좋다.(혹은 본인이 직접 full node를 받아서 연결하는 방법도 있다.)</p>
+</blockquote>
+<h6 id="Connect-Config"><a href="#Connect-Config" class="headerlink" title="Connect Config"></a>Connect Config</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Eos = <span class="built_in">require</span>(<span class="string">'eosjs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  chainId: <span class="literal">null</span>, <span class="comment">// 32 byte (64 char) hex string</span></span><br><span class="line">  keyProvider: [<span class="string">'PrivateKeys...'</span>], <span class="comment">// WIF string or array of keys..</span></span><br><span class="line">  httpEndpoint: <span class="string">'http://127.0.0.1:8888'</span>,</span><br><span class="line">  expireInSeconds: <span class="number">60</span>,</span><br><span class="line">  broadcast: <span class="literal">true</span>,</span><br><span class="line">  verbose: <span class="literal">false</span>, <span class="comment">// API activity</span></span><br><span class="line">  sign: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> eos = Eos(config);</span><br></pre></td></tr></table></figure>
+
+<p>이부분의 자세한 내용은 github에 있으니 여기에서 확인하면 된다.(<a href="https://github.com/EOSIO/eosjs#configuration" target="_blank" rel="noopener">github-configuration</a>)</p>
+<h4 id="getInfo-api"><a href="#getInfo-api" class="headerlink" title="getInfo - api"></a>getInfo - api</h4><p>EOS의 기본 네트워크 정보를 가지고 올 수 있다. 코드는 아래와 같다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> eos = Eos().getInfo(<span class="function">(<span class="params">error, info</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error, info);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>재미 있는 것은 다른 api들은 전부 Promise를 기본으로 하는데 getInfo만 callback방식이다.</p>
+</blockquote>
+<p>리턴된 값은 아래와 같다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    server_version: '36a043c5',</span><br><span class="line">    chain_id:</span><br><span class="line">        'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',</span><br><span class="line">    head_block_num: 5469047,</span><br><span class="line">    last_irreversible_block_num: 5468711,</span><br><span class="line">    last_irreversible_block_id:</span><br><span class="line">        '00537227a657d1f4fd74de877e9ad1a3839540ece45eedeaf177b20e51b2da1b',</span><br><span class="line">    head_block_id:</span><br><span class="line">        '005373770504c59e992214b3056c7bdabb07c53c5a9c4785909b90fe595a119f',</span><br><span class="line">    head_block_time: '2018-07-12T08:58:05.500',</span><br><span class="line">    head_block_producer: 'helloeoscnbp',</span><br><span class="line">    virtual_block_cpu_limit: 200000000,</span><br><span class="line">    virtual_block_net_limit: 1048576000,</span><br><span class="line">    block_cpu_limit: 199900,</span><br><span class="line">    block_net_limit: 1048576</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위에서(EOS Connect) 애기 했던 chainId를 모를 경우 getInfo를 통해서 chainId를 얻어서 쓸 수 있다.</p>
+<p>이번 글에서는 설치, connect, getInfo만 첫 걸음이라는 생각으로 가볍게 알아보았다.</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://mayajuni.github.io/2018/07/16/eosJs-시작하기/" data-id="ckarflz8n000ayo04p8c40qgp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://mayajuni.github.io/2018/07/16/eosJs-시작하기/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://mayajuni.github.io/2018/07/16/eosJs-시작하기/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2018/08/01/EosJS-API-사용-1/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    EosJS API 사용
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/03/27/RethinkDB-시작하기/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">RethinkDB 소개</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+
+    <section id="comments">
+    
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+</div>
+
+    
+    </section>
+
+</section>
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner" id="profileDetail" style="display: none;">
+        <div class="base-info profile-block">
+            <img id="avatar" style="border-radius : 50%;-webkit-border-radius : 50%;-moz-border-radius : 50%;" src="https://avatars.githubusercontent.com/u/4123095?v=3" />
+            <h2 id="name"></h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Seoul, Korea</span>
+            <!--<a id="follow" target="_blank" href="https://github.com/mayajuni">FOLLOW</a>-->
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                <a href="https://github.com/mayajuni?tab=repositories">
+                    <div id="repos"></div>
+                    <span>REPOS</span>
+                </a>
+            </div>
+            <div class="article-info-block">
+                <a href="https://github.com/mayajuni/followers">
+                    <div id="followers"></div>
+                    <span>FOLLOWERS</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/mayajuni" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.facebook.com/dongjun.kwon.39" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/feed.xml" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+        <!--<div class="article-info profile-block">
+            <div class="article-info-block">
+                11
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                17
+                <span>tags</span>
+            </div>
+        </div>-->
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ExpressJs/">ExpressJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSql/">NoSql</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Typescript/">Typescript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Typescript/nodeJs/">nodeJs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/eos/">eos</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/eos/eosjs/">eosjs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es2015/">es2015</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">server</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/회고/">회고</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/회고/">회고</a></p>
+                            <p class="item-title"><a href="/2020/01/28/CTO로-한해를-보내며-2019-회고/" class="title">CTO로 한해를 보내며.. (2019 회고)</a></p>
+                            <p class="item-date"><time datetime="2020-01-28T05:19:00.000Z" itemprop="datePublished">2020-01-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/server/">server</a></p>
+                            <p class="item-title"><a href="/2020/01/17/Lambda를-선택한-이유/" class="title">Serverless를 선택한 이유(Lambda, Altas)</a></p>
+                            <p class="item-date"><time datetime="2020-01-17T03:25:00.000Z" itemprop="datePublished">2020-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a></p>
+                            <p class="item-title"><a href="/2018/08/01/EosJS-API-사용-1/" class="title">EosJS API 사용</a></p>
+                            <p class="item-date"><time datetime="2018-08-01T01:32:00.000Z" itemprop="datePublished">2018-08-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a></p>
+                            <p class="item-title"><a href="/2018/07/16/eosJs-시작하기/" class="title">eosJs 시작하기</a></p>
+                            <p class="item-date"><time datetime="2018-07-16T05:19:00.000Z" itemprop="datePublished">2018-07-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/NoSql/">NoSql</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a></p>
+                            <p class="item-title"><a href="/2017/03/27/RethinkDB-시작하기/" class="title">RethinkDB 소개</a></p>
+                            <p class="item-date"><time datetime="2017-03-27T04:18:00.000Z" itemprop="datePublished">2017-03-27</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2019/">2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NoSql/">NoSql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/">block chain</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eos/">eos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eosjs/">eosjs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es2015/">es2015</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expressjs/">expressjs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lambda/">lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rethinkDb/">rethinkDb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/router/">router</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/serverless/">serverless</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">typescript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회고/">회고</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2016/" style="font-size: 10px;">2016</a> <a href="/tags/2019/" style="font-size: 10px;">2019</a> <a href="/tags/NoSql/" style="font-size: 10px;">NoSql</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/block-chain/" style="font-size: 10px;">block chain</a> <a href="/tags/eos/" style="font-size: 10px;">eos</a> <a href="/tags/eosjs/" style="font-size: 15px;">eosjs</a> <a href="/tags/es2015/" style="font-size: 10px;">es2015</a> <a href="/tags/expressjs/" style="font-size: 20px;">expressjs</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/rethinkDb/" style="font-size: 10px;">rethinkDb</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/serverless/" style="font-size: 10px;">serverless</a> <a href="/tags/typescript/" style="font-size: 15px;">typescript</a> <a href="/tags/회고/" style="font-size: 20px;">회고</a>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+        
+        <!--<div id="toTop" class="fa fa-angle-up"></div>-->
+    </div>
+</aside>
+<script>
+    function escape(text) {
+        return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function numberic(num) {
+        if (!num) return null;
+        if (num === 1000) return 1;
+        if (num < 1000) return num;
+        num = num / 1000;
+        if (num > 10) return parseInt(num, 10) + 'k';
+        return num.toFixed(1) + 'k';
+    }
+
+    var url = 'https://api.github.com/users/mayajuni';
+
+
+    $.get(url, function(data) {
+        var defaults = '0';
+        data.name = escape(data.name);
+        data.public_repos = numberic(data.public_repos) || defaults;
+        data.public_gists = numberic(data.public_gists) || defaults;
+        data.followers = numberic(data.followers) || defaults;
+
+        $('#avatar').attr("src", data.avatar_url);
+        $('#avatar-header').attr("src", data.avatar_url);
+        $("#name").html(data.name);
+        $("#title").html(data.bio);
+        $("#repos").html(data.public_repos);
+        $("#location").html(data.location);
+        $("#followers").html(data.followers);
+        $("#profileDetail").show();
+    });
+</script>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2020 Dongjun Kwon<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+        </div>
+    </div>
+</footer>
+        
+    
+<script>
+    var disqus_shortname = 'mayajuni';
+    
+    
+    var disqus_url = 'https://mayajuni.github.io/2018/07/16/eosJs-시작하기/';
+    
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

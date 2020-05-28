@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>EosJS API 사용 | Dongjun&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="EosJS API 사용안녕하세요. 권동준 입니다. 이전에 EOSJS 시작하기에서 간단하게 EOSJS를 사용하는 방법을 해봤습니다. 이번에는 EosJs에서 제공하는 api 중에 자주 쓰는 api를 소개하고 테스트 할 수 있게 진행을 하려고 합니다.   api 목록을 보기를 원하시면 여기를 확인해 보시면 됩니다.   시작하기에 앞서 준비하기모든 코드를 직접 사">
+<meta name="keywords" content="eosjs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EosJS API 사용">
+<meta property="og:url" content="https://mayajuni.github.io/2018/08/01/EosJS-API-사용-1/index.html">
+<meta property="og:site_name" content="Dongjun&#39;s Blog">
+<meta property="og:description" content="EosJS API 사용안녕하세요. 권동준 입니다. 이전에 EOSJS 시작하기에서 간단하게 EOSJS를 사용하는 방법을 해봤습니다. 이번에는 EosJs에서 제공하는 api 중에 자주 쓰는 api를 소개하고 테스트 할 수 있게 진행을 하려고 합니다.   api 목록을 보기를 원하시면 여기를 확인해 보시면 됩니다.   시작하기에 앞서 준비하기모든 코드를 직접 사">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://mayajuni.github.io/2018/08/01/EosJS-API-사용-1/css/images/main.jpg">
+<meta property="og:updated_time" content="2020-05-28T23:36:25.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EosJS API 사용">
+<meta name="twitter:description" content="EosJS API 사용안녕하세요. 권동준 입니다. 이전에 EOSJS 시작하기에서 간단하게 EOSJS를 사용하는 방법을 해봤습니다. 이번에는 EosJs에서 제공하는 api 중에 자주 쓰는 api를 소개하고 테스트 할 수 있게 진행을 하려고 합니다.   api 목록을 보기를 원하시면 여기를 확인해 보시면 됩니다.   시작하기에 앞서 준비하기모든 코드를 직접 사">
+<meta name="twitter:image" content="https://mayajuni.github.io/2018/08/01/EosJS-API-사용-1/css/images/main.jpg">
+<link rel="publisher" href="mayajuni10@gmail.com">
+<meta property="fb:admins" content="100000731937646">
+    
+    <link rel="canonical" href="https://mayajuni.github.io/2018/08/01/eosjs-api-사용-1/">
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.ico# path to favicon">
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-79741974-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head></html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">Dongjun&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" style="border-radius : 50%;-webkit-border-radius : 50%;-moz-border-radius : 50%;" id="avatar-header" src="https://avatars.githubusercontent.com/u/4123095?v=3" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form"  style="text-align: right">
+        <input type="text" class="ins-search-input search-form-input" style="width: 175px;" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+            
+            <section id="main"><article id="post-EosJS-API-사용-1" class="article article-type-post" itemscope
+         itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+            EosJS API 사용
+        </h1>
+    
+
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/08/01/EosJS-API-사용-1/">
+            <time datetime="2018-08-01T01:32:00.000Z" itemprop="datePublished">2018-08-01</time>
+        </a>
+    </div>
+
+
+                
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/eosjs/">eosjs</a>
+    </div>
+
+            </div>
+        </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+            
+            <h1 id="EosJS-API-사용"><a href="#EosJS-API-사용" class="headerlink" title="EosJS API 사용"></a>EosJS API 사용</h1><p>안녕하세요. 권동준 입니다.<br> 이전에 EOSJS 시작하기에서 간단하게 EOSJS를 사용하는 방법을 해봤습니다. 이번에는 EosJs에서 제공하는 api 중에 자주 쓰는 api를 소개하고 테스트 할 수 있게 진행을 하려고 합니다. </p>
+<blockquote>
+<p>api 목록을 보기를 원하시면 <a href="https://github.com/EOSIO/eosjs-api/blob/master/docs/api.md#eos--object" target="_blank" rel="noopener">여기</a>를 확인해 보시면 됩니다. </p>
+</blockquote>
+<h4 id="시작하기에-앞서-준비하기"><a href="#시작하기에-앞서-준비하기" class="headerlink" title="시작하기에 앞서 준비하기"></a>시작하기에 앞서 준비하기</h4><p>모든 코드를 직접 사용 해볼 수 있게 할 예정입니다. 그렇게 하기 위해서는 준비가 필요합니다. </p>
+<p>준비 사항은 아래와 같습니다.</p>
+<ol>
+<li>nodeJs</li>
+<li>eosJs</li>
+</ol>
+<p>위의 2개를 설치하고 javascript 파일 가장 위에 아래와 같이 넣어주세요.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Eos = <span class="built_in">require</span>(<span class="string">'eosjs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    expireInSeconds: <span class="number">60</span>,</span><br><span class="line">    broadcast: <span class="literal">true</span>,</span><br><span class="line">    debug: <span class="literal">false</span>,</span><br><span class="line">    sign: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// mainNet bp endpoint</span></span><br><span class="line">    httpEndpoint: <span class="string">'https://api.eosnewyork.io'</span>,</span><br><span class="line">    <span class="comment">// mainNet chainId</span></span><br><span class="line">    chainId: <span class="string">'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> eos = Eos(config);</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 넣고 나서 아래의 api 예제를 직접 코딩하고 nodeJs로 javascript를 실행하면 값이 나옵니다.</p>
+<blockquote>
+<p>Bp Endpoint마다 응답속도 혹은 신뢰도가 각각 다르게 때문에 본인에 가장 맞는 bp를 사용하기를 권장합니다.</p>
+</blockquote>
+<h4 id="getBlock-blockNumOrId"><a href="#getBlock-blockNumOrId" class="headerlink" title="getBlock(blockNumOrId)"></a>getBlock(blockNumOrId)</h4><p>해당 블록의 정보를 가지고 올 수 있습니다.</p>
+<p>params:</p>
+<table>
+<thead>
+<tr>
+<th>param</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>block_num_or_id</td>
+<td>블록의 아이디나 number</td>
+</tr>
+</tbody></table>
+<p>Code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise</span></span><br><span class="line">eos.getBlock(<span class="number">1</span>).then(<span class="function"><span class="params">result</span> =&gt;</span> <span class="built_in">console</span>.log(result)).catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br><span class="line"></span><br><span class="line"><span class="comment">// callback</span></span><br><span class="line">eos.getBlock(<span class="number">1</span>, (error, result) =&gt; <span class="built_in">console</span>.log(error, result));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Parameters object</span></span><br><span class="line">eos.getBlock(&#123;<span class="attr">block_num_or_id</span>: <span class="number">1</span>&#125;).then(<span class="built_in">console</span>.log);</span><br></pre></td></tr></table></figure>
+
+<p>결과 값: </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123; timestamp: '2018-06-08T08:08:08.500',</span><br><span class="line">  producer: '',</span><br><span class="line">  confirmed: 1,</span><br><span class="line">  previous:</span><br><span class="line">   '0000000000000000000000000000000000000000000000000000000000000000',</span><br><span class="line">  transaction_mroot:</span><br><span class="line">   '0000000000000000000000000000000000000000000000000000000000000000',</span><br><span class="line">  action_mroot:</span><br><span class="line">   'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',</span><br><span class="line">  schedule_version: 0,</span><br><span class="line">  new_producers: null,</span><br><span class="line">  header_extensions: [],</span><br><span class="line">  producer_signature:</span><br><span class="line">   'SIG_K1_111111111111111111111111111111111111111111111111111111111111111116uk5ne',</span><br><span class="line">  transactions: [],</span><br><span class="line">  block_extensions: [],</span><br><span class="line">  id:</span><br><span class="line">   '00000001405147477ab2f5f51cda427b638191c66d2c59aa392d5c2c98076cb0',</span><br><span class="line">  block_num: 1,</span><br><span class="line">  ref_block_prefix: 4126519930 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>해당 블록에서 어떠한 일을 했는지 보기 위해서는 transactions를 보면 됩니다. </p>
+<p>transactions를 보기 위해 아래와 같이 한번 같이 해보시죠.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[ &#123; <span class="attr">status</span>: <span class="string">'executed'</span>,</span><br><span class="line">    cpu_usage_us: <span class="number">1170</span>,</span><br><span class="line">    net_usage_words: <span class="number">40</span>,</span><br><span class="line">    trx:</span><br><span class="line">     &#123; <span class="attr">id</span>:</span><br><span class="line">        <span class="string">'8a29bfa66850b7d4a2b0b62173a24c5dfe4dbd7b39c211df6309d02a85374960'</span>,</span><br><span class="line">       signatures: [<span class="built_in">Array</span>],</span><br><span class="line">       compression: <span class="string">'none'</span>,</span><br><span class="line">       packed_context_free_data: <span class="string">''</span>,</span><br><span class="line">       context_free_data: [],</span><br><span class="line">       packed_trx:</span><br><span class="line">        <span class="string">'9051595bad38f016a289000000000100a6823403ea3055000000572d3ccdcd0110e0a53cab294d7600000000a8ed3232dd0110e0a53cab294d76a0986af64b96bc65010000000000000004454f5300000000bb01496e74726f647563696e67204954414d204e6574776f726b2c20616e20454f532d426173656420444150502050726f6a656374206f6e20426c6f636b636861696e2047616d696e6720506c6174666f726d20666f722061205472616e73706172656e742047616d696e672045636f73797374656d2e202d2d576562736974653a2068747470733a2f2f6974616d2e67616d65732f656e202d2d54656c656772616d3a2068747470733a2f2f742e6d652f6974616d6e6574776f726b00'</span>,</span><br><span class="line">       transaction: [<span class="built_in">Object</span>] &#125; &#125;</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+
+<p>위와 같은 값으로 주며 저기에서도 transaction를 보면 actions가 있으며 그걸 보면 이 블록에서 어떤일들을 했는지 더욱 깊게 볼 수 있습니다.</p>
+<h3 id="getAccount-accountName"><a href="#getAccount-accountName" class="headerlink" title="getAccount(accountName)"></a>getAccount(accountName)</h3><p>Eos계정의 정보를 가지고 올때 사용합니다.</p>
+<p>Params:</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>account_name</td>
+<td>eos 계정의 이름</td>
+</tr>
+</tbody></table>
+<p>Code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise</span></span><br><span class="line">eos.getAccount(<span class="string">'itamnetwork1'</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">result</span> =&gt;</span> <span class="built_in">console</span>.log(result))</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br><span class="line"></span><br><span class="line"><span class="comment">// callback</span></span><br><span class="line">eos.getAccount(<span class="string">'itamnetwork1'</span>, (error, result) =&gt; <span class="built_in">console</span>.log(error, result));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Parameters object</span></span><br><span class="line">eos.getAccount(&#123;<span class="attr">account_name</span>: <span class="string">'itamnetwork1'</span>&#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">result</span> =&gt;</span> <span class="built_in">console</span>.log(result))</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br></pre></td></tr></table></figure>
+
+<p>결과 값</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#123; account_name: 'itamnetwork1',</span><br><span class="line">  head_block_num: 8516805,</span><br><span class="line">  head_block_time: '2018-07-30T07:34:52.500',</span><br><span class="line">  privileged: false,</span><br><span class="line">  last_code_update: '1970-01-01T00:00:00.000',</span><br><span class="line">  created: '2018-07-09T02:24:58.500',</span><br><span class="line">  core_liquid_balance: '12.6131 EOS',</span><br><span class="line">  ram_quota: 14976,</span><br><span class="line">  net_weight: 201000,</span><br><span class="line">  cpu_weight: 10401000,</span><br><span class="line">  net_limit: &#123; used: 1679786, available: 11108657, max: 12788443 &#125;,</span><br><span class="line">  cpu_limit: &#123; used: 7950353, available: 6356380, max: 14306733 &#125;,</span><br><span class="line">  ram_usage: 10934,</span><br><span class="line">  permissions:</span><br><span class="line">   [ &#123; perm_name: 'active', parent: 'owner', required_auth: [Object] &#125;,</span><br><span class="line">     &#123; perm_name: 'owner', parent: '', required_auth: [Object] &#125; ],</span><br><span class="line">  total_resources:</span><br><span class="line">   &#123; owner: 'itamnetwork1',</span><br><span class="line">     net_weight: '20.1000 EOS',</span><br><span class="line">     cpu_weight: '1040.1000 EOS',</span><br><span class="line">     ram_bytes: 14976 &#125;,</span><br><span class="line">  self_delegated_bandwidth:</span><br><span class="line">   &#123; from: 'itamnetwork1',</span><br><span class="line">     to: 'itamnetwork1',</span><br><span class="line">     net_weight: '0.1000 EOS',</span><br><span class="line">     cpu_weight: '0.1000 EOS' &#125;,</span><br><span class="line">  refund_request: null,</span><br><span class="line">  voter_info:</span><br><span class="line">   &#123; owner: 'itamnetwork1',</span><br><span class="line">     proxy: '',</span><br><span class="line">     producers: [],</span><br><span class="line">     staked: 4000,</span><br><span class="line">     last_vote_weight: '0.00000000000000000',</span><br><span class="line">     proxied_vote_weight: '0.00000000000000000',</span><br><span class="line">     is_proxy: 0 &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>위의 결과값중에 다 중요하지만 몇개만 설명을 하려 합니다.</p>
+<ol>
+<li><p>account_name<br>누구나 다 알다 싶이 eos account name 입니다.</p>
+</li>
+<li><p>ram_quota</p>
+<p>내가 보유한 RAM 입니다. 단위는 byte입니다.</p>
+</li>
+<li><p>net_limit</p>
+<p>해당 계정이 가지고 있는 총 net, 사용 가능한 net, 사용한 net을 나타냅니다. 단위는 byte입니다.</p>
+</li>
+<li><p>cpu_limit</p>
+<p>해당 계정이 가지고 있는 총 cpu, 사용 가능한 cpu, 사용한 cpu을 나타냅니다. 단위는 us 입니다.</p>
+</li>
+<li><p>ram_usage</p>
+<p>해당 계정이 사용한 RAM 입니다 단위는 byte입니다.</p>
+</li>
+<li><p>total_resources<br>나에게 할당된 리소스의 eos를 보여줍니다. (누군가가 나에게 delegated한 것도 포함됩니다.)</p>
+</li>
+<li><p>self_delegated_bandwidth<br>내가 내 자신에게 delegated한 정보 입니다.</p>
+</li>
+<li><p>voter_info</p>
+<p>투표에 대한 정보입니다. 여기에서 눈여겨 봐야될 부분은 staked입니다. 이부분은 현재 내가 staked 한 부분인데요. 좀더 자세히 설명한다면 내가 스스로 내 자신에게 delegated한 부분과 누군가에서 delegated한 부분을 포함한 값입니다.</p>
+</li>
+</ol>
+<h3 id="getKeyAccounts-publicKey"><a href="#getKeyAccounts-publicKey" class="headerlink" title="getKeyAccounts(publicKey)"></a>getKeyAccounts(publicKey)</h3><p>public key에 해당하는 account들을 가지고 옵니다.</p>
+<p>Params:</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public_key</td>
+<td>EOS의 public key</td>
+</tr>
+</tbody></table>
+<p>Code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise</span></span><br><span class="line">eos.getKeyAccounts(<span class="string">'EOS6S6C5ExCM7VHGdmG5h6VREVJEC33bpMJtLucwhyByPmzB58KW5'</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">result</span> =&gt;</span> <span class="built_in">console</span>.log(result))</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br><span class="line"></span><br><span class="line"><span class="comment">// callback</span></span><br><span class="line">eos.getKeyAccounts(<span class="string">'EOS6S6C5ExCM7VHGdmG5h6VREVJEC33bpMJtLucwhyByPmzB58KW5'</span>,</span><br><span class="line">    (error, result) =&gt; <span class="built_in">console</span>.log(error, result));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Parameters object</span></span><br><span class="line">eos.getKeyAccounts(&#123;<span class="attr">public_key</span>: <span class="string">'EOS6S6C5ExCM7VHGdmG5h6VREVJEC33bpMJtLucwhyByPmzB58KW5'</span>&#125;)</span><br><span class="line">    .then(<span class="built_in">console</span>.log);</span><br></pre></td></tr></table></figure>
+
+<p>결과값:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; account_names: [ 'itamnetwork1' ] &#125;</span><br></pre></td></tr></table></figure>
+
+<p>EOS의 public key 한개로 여러 account를 만들수 있습니다. 그렇게 때문에 account_name의 값이 string으로 이루어진 array 입니다.</p>
+<h3 id="getCurrencyBalance-code-account-symbol"><a href="#getCurrencyBalance-code-account-symbol" class="headerlink" title="getCurrencyBalance(code, account, symbol)"></a>getCurrencyBalance(code, account, symbol)</h3><p>code의 symbol에 해당하는 Token을 가지고 옵니다. </p>
+<p>Params:</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>컨트렉트 명 혹은 해당 컨트렉트가 있는 account명을 말합니다.<br>ex) eosio.token, therealkarma 등등</td>
+</tr>
+<tr>
+<td>account</td>
+<td>조회할 EOS의 계정명 입니다.</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>Token의 symbol 입니다. 이부분은 필수값이 아닌 옵션 값입니다.</td>
+</tr>
+</tbody></table>
+<p>Code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise</span></span><br><span class="line">eos.getCurrencyBalance(<span class="string">'eosio.token'</span>, <span class="string">'itamnetwork1'</span>, <span class="string">'EOS'</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">result</span> =&gt;</span> <span class="built_in">console</span>.log(result))</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br><span class="line"></span><br><span class="line"><span class="comment">// callback</span></span><br><span class="line">eos.getCurrencyBalance(<span class="string">'eosio.token'</span>, <span class="string">'itamnetwork1'</span>, <span class="string">'EOS'</span>,</span><br><span class="line">    (error, result) =&gt; <span class="built_in">console</span>.log(error, result));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Parameters object</span></span><br><span class="line">eos.getCurrencyBalance(&#123;<span class="attr">account</span>: <span class="string">'itamnetwork1'</span>, <span class="attr">code</span>: <span class="string">'eosio.token'</span>, <span class="attr">symbol</span>: <span class="string">'EOS'</span>&#125;)</span><br><span class="line">    .then(<span class="built_in">console</span>.log);</span><br></pre></td></tr></table></figure>
+
+<p>결과값:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ '<span class="number">12.6131</span> EOS' ]</span><br></pre></td></tr></table></figure>
+
+<p>결과 값을 보면 string형식의 array가 나옵니다. 이유는 해당 컨트렉트안에 여러 symbol을 가진 token들이 있을수 있기 때문입니다. EOS 테스트넷인 정글넷을 보면 symbol을 제외하고 eosio.token을 조회하면 2개의 token들을 볼수 있습니다.</p>
+<h3 id="getCurrencyStats-code-symbol"><a href="#getCurrencyStats-code-symbol" class="headerlink" title="getCurrencyStats(code, symbol)"></a>getCurrencyStats(code, symbol)</h3><p>symbol에 해당하는  Token의 정보를 가지고 옵니다.</p>
+<p>Params:</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>code</td>
+<td>컨트렉트 명 혹은 해당 컨트렉트가 있는 account명을 말합니다.<br>ex) eosio.token, therealkarma 등등</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>Token의 symbol 입니다.</td>
+</tr>
+</tbody></table>
+<p>Code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise</span></span><br><span class="line">eos.getCurrencyStats(<span class="string">'eosio.token'</span>, <span class="string">'EOS'</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">result</span> =&gt;</span> <span class="built_in">console</span>.log(result))</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br><span class="line"></span><br><span class="line"><span class="comment">// callback</span></span><br><span class="line">eos.getCurrencyStats(<span class="string">'eosio.token'</span>, <span class="string">'EOS'</span>,</span><br><span class="line">    (error, result) =&gt; <span class="built_in">console</span>.log(error, result));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Parameters object</span></span><br><span class="line">eos.getCurrencyStats(&#123;<span class="attr">code</span>: <span class="string">'eosio.token'</span>, <span class="attr">symbol</span>: <span class="string">'EOS'</span>&#125;)</span><br><span class="line">    .then(<span class="built_in">console</span>.log);</span><br></pre></td></tr></table></figure>
+
+<p>결과값:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123; EOS:</span><br><span class="line">   &#123; supply: '1006148640.3388 EOS',</span><br><span class="line">     max_supply: '10000000000.0000 EOS',</span><br><span class="line">     issuer: 'eosio' &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>결과값에 대한 설명은 아래와 같습니다.</p>
+<ol>
+<li><p>supply<br>현재 공급된 토큰의 갯수 입니다.</p>
+</li>
+<li><p>max_supply</p>
+<p>총 토큰의 갯수 입니다.</p>
+</li>
+<li><p>issuer<br>발행자 입니다.</p>
+</li>
+</ol>
+<h2 id="마무리하며"><a href="#마무리하며" class="headerlink" title="마무리하며"></a>마무리하며</h2><p>자주 쓰는 api들중 5개를 소개하는 시간을 가지게 되었습니다. 아직 더 많은 api들이 있고 다음 블로그에 이어서 많이 쓰는 api들에 대해서 연재할 계획입니다. 감사합니다.</p>
+<blockquote>
+<p>해당 예제는 <a href="https://github.com/ITAMNETWORK/eosjs-api-example" target="_blank" rel="noopener">github</a>에서 확인 하실 수 있습니다.</p>
+</blockquote>
+<p>해당 게시글은 저의 블로그 혹은 itamnetwork 블로그에서 동일하게 확인 하실수 있습니다.</p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://mayajuni.github.io/2018/08/01/EosJS-API-사용-1/" data-id="ckarflz8i0004yo0445lnvu7g" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://mayajuni.github.io/2018/08/01/EosJS-API-사용-1/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://mayajuni.github.io/2018/08/01/EosJS-API-사용-1/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2020/01/17/Lambda를-선택한-이유/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    Serverless를 선택한 이유(Lambda, Altas)
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/07/16/eosJs-시작하기/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">eosJs 시작하기</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+
+    <section id="comments">
+    
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+</div>
+
+    
+    </section>
+
+</section>
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner" id="profileDetail" style="display: none;">
+        <div class="base-info profile-block">
+            <img id="avatar" style="border-radius : 50%;-webkit-border-radius : 50%;-moz-border-radius : 50%;" src="https://avatars.githubusercontent.com/u/4123095?v=3" />
+            <h2 id="name"></h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Seoul, Korea</span>
+            <!--<a id="follow" target="_blank" href="https://github.com/mayajuni">FOLLOW</a>-->
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                <a href="https://github.com/mayajuni?tab=repositories">
+                    <div id="repos"></div>
+                    <span>REPOS</span>
+                </a>
+            </div>
+            <div class="article-info-block">
+                <a href="https://github.com/mayajuni/followers">
+                    <div id="followers"></div>
+                    <span>FOLLOWERS</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/mayajuni" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.facebook.com/dongjun.kwon.39" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/feed.xml" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+        <!--<div class="article-info profile-block">
+            <div class="article-info-block">
+                11
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                17
+                <span>tags</span>
+            </div>
+        </div>-->
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ExpressJs/">ExpressJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSql/">NoSql</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Typescript/">Typescript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Typescript/nodeJs/">nodeJs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/eos/">eos</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/eos/eosjs/">eosjs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es2015/">es2015</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">server</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/회고/">회고</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/회고/">회고</a></p>
+                            <p class="item-title"><a href="/2020/01/28/CTO로-한해를-보내며-2019-회고/" class="title">CTO로 한해를 보내며.. (2019 회고)</a></p>
+                            <p class="item-date"><time datetime="2020-01-28T05:19:00.000Z" itemprop="datePublished">2020-01-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/server/">server</a></p>
+                            <p class="item-title"><a href="/2020/01/17/Lambda를-선택한-이유/" class="title">Serverless를 선택한 이유(Lambda, Altas)</a></p>
+                            <p class="item-date"><time datetime="2020-01-17T03:25:00.000Z" itemprop="datePublished">2020-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a></p>
+                            <p class="item-title"><a href="/2018/08/01/EosJS-API-사용-1/" class="title">EosJS API 사용</a></p>
+                            <p class="item-date"><time datetime="2018-08-01T01:32:00.000Z" itemprop="datePublished">2018-08-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a></p>
+                            <p class="item-title"><a href="/2018/07/16/eosJs-시작하기/" class="title">eosJs 시작하기</a></p>
+                            <p class="item-date"><time datetime="2018-07-16T05:19:00.000Z" itemprop="datePublished">2018-07-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/NoSql/">NoSql</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a></p>
+                            <p class="item-title"><a href="/2017/03/27/RethinkDB-시작하기/" class="title">RethinkDB 소개</a></p>
+                            <p class="item-date"><time datetime="2017-03-27T04:18:00.000Z" itemprop="datePublished">2017-03-27</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2019/">2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NoSql/">NoSql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/">block chain</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eos/">eos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eosjs/">eosjs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es2015/">es2015</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expressjs/">expressjs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lambda/">lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rethinkDb/">rethinkDb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/router/">router</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/serverless/">serverless</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">typescript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회고/">회고</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2016/" style="font-size: 10px;">2016</a> <a href="/tags/2019/" style="font-size: 10px;">2019</a> <a href="/tags/NoSql/" style="font-size: 10px;">NoSql</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/block-chain/" style="font-size: 10px;">block chain</a> <a href="/tags/eos/" style="font-size: 10px;">eos</a> <a href="/tags/eosjs/" style="font-size: 15px;">eosjs</a> <a href="/tags/es2015/" style="font-size: 10px;">es2015</a> <a href="/tags/expressjs/" style="font-size: 20px;">expressjs</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/rethinkDb/" style="font-size: 10px;">rethinkDb</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/serverless/" style="font-size: 10px;">serverless</a> <a href="/tags/typescript/" style="font-size: 15px;">typescript</a> <a href="/tags/회고/" style="font-size: 20px;">회고</a>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+        
+        <!--<div id="toTop" class="fa fa-angle-up"></div>-->
+    </div>
+</aside>
+<script>
+    function escape(text) {
+        return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function numberic(num) {
+        if (!num) return null;
+        if (num === 1000) return 1;
+        if (num < 1000) return num;
+        num = num / 1000;
+        if (num > 10) return parseInt(num, 10) + 'k';
+        return num.toFixed(1) + 'k';
+    }
+
+    var url = 'https://api.github.com/users/mayajuni';
+
+
+    $.get(url, function(data) {
+        var defaults = '0';
+        data.name = escape(data.name);
+        data.public_repos = numberic(data.public_repos) || defaults;
+        data.public_gists = numberic(data.public_gists) || defaults;
+        data.followers = numberic(data.followers) || defaults;
+
+        $('#avatar').attr("src", data.avatar_url);
+        $('#avatar-header').attr("src", data.avatar_url);
+        $("#name").html(data.name);
+        $("#title").html(data.bio);
+        $("#repos").html(data.public_repos);
+        $("#location").html(data.location);
+        $("#followers").html(data.followers);
+        $("#profileDetail").show();
+    });
+</script>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2020 Dongjun Kwon<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+        </div>
+    </div>
+</footer>
+        
+    
+<script>
+    var disqus_shortname = 'mayajuni';
+    
+    
+    var disqus_url = 'https://mayajuni.github.io/2018/08/01/EosJS-API-사용-1/';
+    
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

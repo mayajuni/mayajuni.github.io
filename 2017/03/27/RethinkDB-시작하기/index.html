@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>RethinkDB 소개 | Dongjun&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="RethinkDB란?Real-Time에 최적화된 오픈소스 데이터베이스라고한다. 그리고 확장 가능한 JSON 데이터 베이스이며, 전통적인 데이터베이스 아키텍처를 바꾸어 변경 사항을 폴링하는 대신 업데이트 된 쿼리 결과를 실시간, 지속적으로 push 할 수 있다고 한다.특징을 설명하자면 아래와 같을꺼 같다.  실시간에 최적화 되어 있다. JSON 기반의 데이">
+<meta name="keywords" content="rethinkDb,NoSql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RethinkDB 소개">
+<meta property="og:url" content="https://mayajuni.github.io/2017/03/27/RethinkDB-시작하기/index.html">
+<meta property="og:site_name" content="Dongjun&#39;s Blog">
+<meta property="og:description" content="RethinkDB란?Real-Time에 최적화된 오픈소스 데이터베이스라고한다. 그리고 확장 가능한 JSON 데이터 베이스이며, 전통적인 데이터베이스 아키텍처를 바꾸어 변경 사항을 폴링하는 대신 업데이트 된 쿼리 결과를 실시간, 지속적으로 push 할 수 있다고 한다.특징을 설명하자면 아래와 같을꺼 같다.  실시간에 최적화 되어 있다. JSON 기반의 데이">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i1.wp.com/developer.ibm.com/clouddataservices/wp-content/uploads/sites/47/2017/07/rethinkdb.png">
+<meta property="og:updated_time" content="2020-05-28T23:36:25.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RethinkDB 소개">
+<meta name="twitter:description" content="RethinkDB란?Real-Time에 최적화된 오픈소스 데이터베이스라고한다. 그리고 확장 가능한 JSON 데이터 베이스이며, 전통적인 데이터베이스 아키텍처를 바꾸어 변경 사항을 폴링하는 대신 업데이트 된 쿼리 결과를 실시간, 지속적으로 push 할 수 있다고 한다.특징을 설명하자면 아래와 같을꺼 같다.  실시간에 최적화 되어 있다. JSON 기반의 데이">
+<meta name="twitter:image" content="https://i1.wp.com/developer.ibm.com/clouddataservices/wp-content/uploads/sites/47/2017/07/rethinkdb.png">
+<link rel="publisher" href="mayajuni10@gmail.com">
+<meta property="fb:admins" content="100000731937646">
+    
+    <link rel="canonical" href="https://mayajuni.github.io/2017/03/27/rethinkdb-시작하기/">
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.ico# path to favicon">
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-79741974-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head></html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">Dongjun&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" style="border-radius : 50%;-webkit-border-radius : 50%;-moz-border-radius : 50%;" id="avatar-header" src="https://avatars.githubusercontent.com/u/4123095?v=3" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form"  style="text-align: right">
+        <input type="text" class="ins-search-input search-form-input" style="width: 175px;" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+            
+            <section id="main"><article id="post-RethinkDB-시작하기" class="article article-type-post" itemscope
+         itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+            RethinkDB 소개
+        </h1>
+    
+
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/03/27/RethinkDB-시작하기/">
+            <time datetime="2017-03-27T04:18:00.000Z" itemprop="datePublished">2017-03-27</time>
+        </a>
+    </div>
+
+
+                
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/NoSql/">NoSql</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/NoSql/">NoSql</a>, <a class="tag-link" href="/tags/rethinkDb/">rethinkDb</a>
+    </div>
+
+            </div>
+        </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+            
+            <p><img src="https://i1.wp.com/developer.ibm.com/clouddataservices/wp-content/uploads/sites/47/2017/07/rethinkdb.png" alt></p>
+<h1 id="RethinkDB란"><a href="#RethinkDB란" class="headerlink" title="RethinkDB란?"></a>RethinkDB란?</h1><p>Real-Time에 최적화된 오픈소스 데이터베이스라고한다. 그리고 확장 가능한 JSON 데이터 베이스이며, 전통적인 데이터베이스 아키텍처를 바꾸어 변경 사항을 폴링하는 대신 업데이트 된 쿼리 결과를 실시간, 지속적으로 push 할 수 있다고 한다.<br>특징을 설명하자면 아래와 같을꺼 같다.</p>
+<ol>
+<li>실시간에 최적화 되어 있다.</li>
+<li>JSON 기반의 데이터베이스이다.</li>
+<li>업데이트가 발생 되었을 시 지속적/실시간으로 push를 해준다.</li>
+<li>확장이 쉬운 분산 데이터베이스</li>
+<li>실시간 웹 애플리케이션 구죽을 위한 <code>오픈소스</code> 데이터 베이스</li>
+<li>웹UI 관리 콘솔을 제공한다.(서버 성능 확인, 쿼리테스트 데이터 테이블과 샤드 등등을 관리하는 도구이다.)</li>
+</ol>
+<h2 id="RethinkDb와-실시간-동기화-서비스의-차이점은-무엇을까"><a href="#RethinkDb와-실시간-동기화-서비스의-차이점은-무엇을까" class="headerlink" title="RethinkDb와 실시간 동기화 서비스의 차이점은 무엇을까?"></a>RethinkDb와 실시간 동기화 서비스의 차이점은 무엇을까?</h2><p>RethinkDb는 Firebase, pubNub, pusher와 같은 실시간 API와 근본적으로 다른 3가지가 있다. </p>
+<ol>
+<li>실시간 동기화 API는 클라우드 서비스이고 RethinkDB는 오픈소스 프로젝트이다. </li>
+<li>실시간 동기화 API는 문서 동기화에만 국한되며, RethinkDB는 범용 데이터베이스 시스템이다. 테이블 조인, 하위쿼리, 지형공간 쿼리 등등을 포함한 쿼리를 실행 할 수 있다. </li>
+<li>실시간 동기화 API는 브라우저에서 직접 액세스하도록 설계되어 있다. 이러면 기본 앱을 쉽게 실행 할 수 있지만 앱이 확장되면 유연성이 제한된다. RethinkDB는 기존 데이터베이스와 같이 응용 프로그램 서버에서 엑세스 할 수 있도록 설계되어 있다. 쉽게 말해 많은 유연성을 가지고 있다.</li>
+</ol>
+<h2 id="RethinkDB와-MongoDB의-차이점은-무엇일까"><a href="#RethinkDB와-MongoDB의-차이점은-무엇일까" class="headerlink" title="RethinkDB와 MongoDB의 차이점은 무엇일까?"></a>RethinkDB와 MongoDB의 차이점은 무엇일까?</h2><p>RethinkDB를 살펴 보면 Mongodb의 oplog가 생각이 든다. 물론 그거 말고도 비슷한 점이 많긴 하다. 하지만 기본적으로 다른 아키텍처를 기반으로 되어 있다. 개발자는 변경상항을 폴링하는 대신 실시간으로 업데이트 된 쿼리 결과를 계속 푸쉬하도록 RethinkDB에서 할 수 있다. 예로 들어 쿼리를 본다면 아래와 같다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.table(<span class="string">'users'</span>).get(<span class="string">'coffeemug'</span>).changes().run()</span><br></pre></td></tr></table></figure>
+
+<p> 위에서 언급했지만 몽고디비의 oplog와 비교 될 수 있지만 oplog보다는 훨씬 노은 수준의 추상화를 제공한다.  RethinkDB의 피드는 쿼리 계산 엔진과 완벽하게 통합되므로 원시 복제 데이터뿐만 아니라 쿼리 결과의 변경 내용을 구독 할 수 있다. 이 아키텍처는 확장 가능한 실시간 응용 프로그램을 구축하는 데 필요한 시간과 노력을 크게 줄일 수 있다. </p>
+<p>이외에도 MongoDB에 비해 여러가지 장점을 제공한다.</p>
+<ul>
+<li>테이블 조인, 하위 쿼리 및 대규모 병렬 분산 계산을 지원하는 고급 쿼리 언어다.</li>
+<li>우아하고 강력한 연산 및 모니터링 API로 쿼리 언어와 통합되며 RethinkDB를보다 쉽게 확장 할 수 있다.</li>
+<li>몇 번의 클릭만으로 샤드하고 복제 할 수있는 간단하고 아름다운 관리 UI 및 온라인 문서 및 쿼리 언어 제안을 제공한다.</li>
+</ul>
+<h2 id="시스템-요구-사항"><a href="#시스템-요구-사항" class="headerlink" title="시스템 요구 사항"></a>시스템 요구 사항</h2><p>RethinkDB 서버는 C++로 작성되었으며, 32비트 및 64비트 리눅스 시스템과 OS X 10.7이상에서 실행 할 수 있다.<br>최소 2기가 이상의 램을 권장하지만 업격한 하드웨어 요구 사항은 없다.(다른 블로그를 보니 램이 부족해서 몽고디비로 이전했다는 사람도 있긴했다.) </p>
+<h2 id="라이센스는-무엇을까"><a href="#라이센스는-무엇을까" class="headerlink" title="라이센스는 무엇을까?"></a>라이센스는 무엇을까?</h2><p>RethinkDB 서버 및 클라이언트 드라이버는 <a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank" rel="noopener">Apache License 버전 2.0</a> 에 따라 사용이 허가됩니다 .</p>
+<p>다음에는 간단한 설치부터 쿼리하는거까지 진행을 해보도록 하겠다. </p>
+<p>참고사항</p>
+<ol>
+<li><a href="https://www.rethinkdb.com/faq/" target="_blank" rel="noopener">Rethink FAQ</a></li>
+<li><a href="https://www.rethinkdb.com" target="_blank" rel="noopener">RethinkDB</a></li>
+</ol>
+
+            
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://mayajuni.github.io/2017/03/27/RethinkDB-시작하기/" data-id="ckarflz8k0006yo04dq63mjf6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://mayajuni.github.io/2017/03/27/RethinkDB-시작하기/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://mayajuni.github.io/2017/03/27/RethinkDB-시작하기/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2018/07/16/eosJs-시작하기/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    eosJs 시작하기
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/12/30/2016년-회고/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2016년 회고</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+
+    <section id="comments">
+    
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+</div>
+
+    
+    </section>
+
+</section>
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner" id="profileDetail" style="display: none;">
+        <div class="base-info profile-block">
+            <img id="avatar" style="border-radius : 50%;-webkit-border-radius : 50%;-moz-border-radius : 50%;" src="https://avatars.githubusercontent.com/u/4123095?v=3" />
+            <h2 id="name"></h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Seoul, Korea</span>
+            <!--<a id="follow" target="_blank" href="https://github.com/mayajuni">FOLLOW</a>-->
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                <a href="https://github.com/mayajuni?tab=repositories">
+                    <div id="repos"></div>
+                    <span>REPOS</span>
+                </a>
+            </div>
+            <div class="article-info-block">
+                <a href="https://github.com/mayajuni/followers">
+                    <div id="followers"></div>
+                    <span>FOLLOWERS</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/mayajuni" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.facebook.com/dongjun.kwon.39" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/feed.xml" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+        <!--<div class="article-info profile-block">
+            <div class="article-info-block">
+                11
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                17
+                <span>tags</span>
+            </div>
+        </div>-->
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ExpressJs/">ExpressJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSql/">NoSql</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Typescript/">Typescript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Typescript/nodeJs/">nodeJs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/eos/">eos</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/eos/eosjs/">eosjs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es2015/">es2015</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">server</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/회고/">회고</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/회고/">회고</a></p>
+                            <p class="item-title"><a href="/2020/01/28/CTO로-한해를-보내며-2019-회고/" class="title">CTO로 한해를 보내며.. (2019 회고)</a></p>
+                            <p class="item-date"><time datetime="2020-01-28T05:19:00.000Z" itemprop="datePublished">2020-01-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/server/">server</a></p>
+                            <p class="item-title"><a href="/2020/01/17/Lambda를-선택한-이유/" class="title">Serverless를 선택한 이유(Lambda, Altas)</a></p>
+                            <p class="item-date"><time datetime="2020-01-17T03:25:00.000Z" itemprop="datePublished">2020-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a></p>
+                            <p class="item-title"><a href="/2018/08/01/EosJS-API-사용-1/" class="title">EosJS API 사용</a></p>
+                            <p class="item-date"><time datetime="2018-08-01T01:32:00.000Z" itemprop="datePublished">2018-08-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a></p>
+                            <p class="item-title"><a href="/2018/07/16/eosJs-시작하기/" class="title">eosJs 시작하기</a></p>
+                            <p class="item-date"><time datetime="2018-07-16T05:19:00.000Z" itemprop="datePublished">2018-07-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/NoSql/">NoSql</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a></p>
+                            <p class="item-title"><a href="/2017/03/27/RethinkDB-시작하기/" class="title">RethinkDB 소개</a></p>
+                            <p class="item-date"><time datetime="2017-03-27T04:18:00.000Z" itemprop="datePublished">2017-03-27</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2019/">2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NoSql/">NoSql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/">block chain</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eos/">eos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eosjs/">eosjs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es2015/">es2015</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expressjs/">expressjs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lambda/">lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rethinkDb/">rethinkDb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/router/">router</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/serverless/">serverless</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">typescript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회고/">회고</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2016/" style="font-size: 10px;">2016</a> <a href="/tags/2019/" style="font-size: 10px;">2019</a> <a href="/tags/NoSql/" style="font-size: 10px;">NoSql</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/block-chain/" style="font-size: 10px;">block chain</a> <a href="/tags/eos/" style="font-size: 10px;">eos</a> <a href="/tags/eosjs/" style="font-size: 15px;">eosjs</a> <a href="/tags/es2015/" style="font-size: 10px;">es2015</a> <a href="/tags/expressjs/" style="font-size: 20px;">expressjs</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/rethinkDb/" style="font-size: 10px;">rethinkDb</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/serverless/" style="font-size: 10px;">serverless</a> <a href="/tags/typescript/" style="font-size: 15px;">typescript</a> <a href="/tags/회고/" style="font-size: 20px;">회고</a>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+        
+        <!--<div id="toTop" class="fa fa-angle-up"></div>-->
+    </div>
+</aside>
+<script>
+    function escape(text) {
+        return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function numberic(num) {
+        if (!num) return null;
+        if (num === 1000) return 1;
+        if (num < 1000) return num;
+        num = num / 1000;
+        if (num > 10) return parseInt(num, 10) + 'k';
+        return num.toFixed(1) + 'k';
+    }
+
+    var url = 'https://api.github.com/users/mayajuni';
+
+
+    $.get(url, function(data) {
+        var defaults = '0';
+        data.name = escape(data.name);
+        data.public_repos = numberic(data.public_repos) || defaults;
+        data.public_gists = numberic(data.public_gists) || defaults;
+        data.followers = numberic(data.followers) || defaults;
+
+        $('#avatar').attr("src", data.avatar_url);
+        $('#avatar-header').attr("src", data.avatar_url);
+        $("#name").html(data.name);
+        $("#title").html(data.bio);
+        $("#repos").html(data.public_repos);
+        $("#location").html(data.location);
+        $("#followers").html(data.followers);
+        $("#profileDetail").show();
+    });
+</script>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2020 Dongjun Kwon<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+        </div>
+    </div>
+</footer>
+        
+    
+<script>
+    var disqus_shortname = 'mayajuni';
+    
+    
+    var disqus_url = 'https://mayajuni.github.io/2017/03/27/RethinkDB-시작하기/';
+    
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

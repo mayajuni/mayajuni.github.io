@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>es2015 요약 | Dongjun&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="ES2015  ES2015는 Javascript의 버전이다. Ecma라는 단체에서 기존의 결점을 보완한 표준 자바스크립트 버전을 매년 발표한다. ES는 EcamaScript의 줄임말이다. let 블록 스코프 변수(block scoped variable)이다. var가 함수 스코프 변수 이라는 점에서 대비된다. 블록 단위안에서도 hoisting 되지 않는다.">
+<meta name="keywords" content="es2015">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es2015 요약">
+<meta property="og:url" content="https://mayajuni.github.io/2016/12/05/es2015/index.html">
+<meta property="og:site_name" content="Dongjun&#39;s Blog">
+<meta property="og:description" content="ES2015  ES2015는 Javascript의 버전이다. Ecma라는 단체에서 기존의 결점을 보완한 표준 자바스크립트 버전을 매년 발표한다. ES는 EcamaScript의 줄임말이다. let 블록 스코프 변수(block scoped variable)이다. var가 함수 스코프 변수 이라는 점에서 대비된다. 블록 단위안에서도 hoisting 되지 않는다.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://mayajuni.github.io/2016/12/05/es2015/css/images/main.jpg">
+<meta property="og:updated_time" content="2020-05-28T23:36:25.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="es2015 요약">
+<meta name="twitter:description" content="ES2015  ES2015는 Javascript의 버전이다. Ecma라는 단체에서 기존의 결점을 보완한 표준 자바스크립트 버전을 매년 발표한다. ES는 EcamaScript의 줄임말이다. let 블록 스코프 변수(block scoped variable)이다. var가 함수 스코프 변수 이라는 점에서 대비된다. 블록 단위안에서도 hoisting 되지 않는다.">
+<meta name="twitter:image" content="https://mayajuni.github.io/2016/12/05/es2015/css/images/main.jpg">
+<link rel="publisher" href="mayajuni10@gmail.com">
+<meta property="fb:admins" content="100000731937646">
+    
+    <link rel="canonical" href="https://mayajuni.github.io/2016/12/05/es2015/">
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.ico# path to favicon">
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-79741974-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head></html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">Dongjun&#39;s Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" style="border-radius : 50%;-webkit-border-radius : 50%;-moz-border-radius : 50%;" id="avatar-header" src="https://avatars.githubusercontent.com/u/4123095?v=3" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form"  style="text-align: right">
+        <input type="text" class="ins-search-input search-form-input" style="width: 175px;" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+            
+            <section id="main"><article id="post-es2015" class="article article-type-post" itemscope
+         itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <header class="article-header">
+            
+    
+        <h1 class="article-title" itemprop="name">
+            es2015 요약
+        </h1>
+    
+
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/12/05/es2015/">
+            <time datetime="2016-12-05T05:59:02.000Z" itemprop="datePublished">2016-12-05</time>
+        </a>
+    </div>
+
+
+                
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/es2015/">es2015</a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/es2015/">es2015</a>
+    </div>
+
+            </div>
+        </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+            
+            <h1 id="ES2015"><a href="#ES2015" class="headerlink" title="ES2015"></a>ES2015</h1><p>  ES2015는 Javascript의 버전이다.<br> Ecma라는 단체에서 기존의 결점을 보완한 표준 자바스크립트 버전을 매년 발표한다.<br> ES는 EcamaScript의 줄임말이다.</p>
+<h1 id="let"><a href="#let" class="headerlink" title="let"></a>let</h1><ul>
+<li>블록 스코프 변수(block scoped variable)이다.</li>
+<li>var가 함수 스코프 변수 이라는 점에서 대비된다.</li>
+<li>블록 단위안에서도 hoisting 되지 않는다.</li>
+<li>같은 스코프에서 재선언이 불가능하다.</li>
+</ul>
+<p>ex:</p>
+<ol>
+<li><p>블록 스코프 변수 / 함수 스코프 변수 예제</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="string">'a'</span>;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="string">'b'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a =&gt; '</span>, a); <span class="comment">// a</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'b =&gt; '</span>, b); <span class="comment">// b</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a =&gt; '</span>, a); <span class="comment">// a</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'b =&gt; '</span>, b); <span class="comment">// b is not defined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hoisting 예제</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a =&gt; '</span>, a); <span class="comment">// undefined</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'b =&gt; '</span>, b); <span class="comment">// b is not defined</span></span><br><span class="line">    <span class="keyword">var</span> a = <span class="string">'a'</span>;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="string">'b'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>같은 스코프에서 재선언 불가능 예제</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'a'</span>;  <span class="comment">// a = 'a'</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">'aa'</span>; <span class="comment">// a = 'aa'</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="string">'b'</span>;  <span class="comment">// b = 'b'</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="string">'bb'</span>; <span class="comment">// Identifier 'b' has already been declared</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="const"><a href="#const" class="headerlink" title="const"></a>const</h1><ul>
+<li>읽기 전용 상수</li>
+<li>객체를 할당하면 참조값이 상수에 할당되므로 객체의 프로퍼티는 변경 가능</li>
+<li>const 또한 block scoping을 따르며 hoisting 되지 않는다.</li>
+</ul>
+<p>ex:</p>
+<ol>
+<li><p>읽기 전용 예제</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="string">'a'</span>; <span class="comment">// a = 'a'</span></span><br><span class="line">a = <span class="string">'b'</span>        <span class="comment">// Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>프로퍼티 변경 예제</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a.name =&gt; '</span>, a.name); <span class="comment">// a</span></span><br><span class="line">a.name = <span class="string">'b'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a.name =&gt; '</span>, a.name); <span class="comment">// b</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="Set-Collection"><a href="#Set-Collection" class="headerlink" title="Set - Collection"></a>Set - Collection</h1><ul>
+<li>Set은 유일한 값들로 구성된 Collection</li>
+<li>add한 순서대로 원소를 가지고 있다.</li>
+<li>중복된 값은 자동 삭제된다.</li>
+</ul>
+<p>ex:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">a.add(<span class="number">1</span>).add(<span class="number">2</span>).add(<span class="number">1</span>); <span class="comment">// Set &#123;1, 2&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a size: '</span>, a.size); <span class="comment">// 2</span></span><br><span class="line">a.delete(<span class="number">2</span>); <span class="comment">// Set &#123;1&#125;</span></span><br><span class="line">a.forEach(<span class="function"><span class="params">f</span> =&gt;</span> <span class="built_in">console</span>.log(f)); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="WeakSet-Collection"><a href="#WeakSet-Collection" class="headerlink" title="WeakSet - Collection"></a>WeakSet - Collection</h1><ul>
+<li>weakly하게 값을 참조한다는 뜻인데 WeakSet이 갖는 객체의 참조값이 다른곳에서 참조되지 않으면 객체는 garbage collect 대상</li>
+<li>객체 참조값만 가진다.</li>
+<li>iterable 객체가 아니다.</li>
+<li>.has(), .get(), .set(), .delete()만 지원</li>
+</ul>
+<p>ex:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="built_in">WeakSet</span>();</span><br><span class="line"><span class="keyword">const</span> value = &#123;<span class="attr">a</span>: <span class="string">'a'</span>&#125;;</span><br><span class="line">ws.add(value).add(&#123;<span class="attr">b</span>: <span class="string">'moon'</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ws); <span class="comment">// WeakSet &#123;Object &#123;b: "moon"&#125;, Object &#123;a: "a"&#125;&#125;</span></span><br><span class="line"><span class="comment">/* after the garbage Collection has run */</span></span><br><span class="line"><span class="built_in">console</span>.log(ws); <span class="comment">// WeakSet &#123;Object &#123;a: "a"&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Map-Collection"><a href="#Map-Collection" class="headerlink" title="Map - Collection"></a>Map - Collection</h1><ul>
+<li>key-value로 이루어진 Collection</li>
+<li>iterable 객체</li>
+<li>삽입한 순서대로 원소를 가진다.</li>
+</ul>
+<p>ex:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"><span class="keyword">const</span> obj = &#123;<span class="attr">a</span>: <span class="number">2</span>&#125;;</span><br><span class="line">map.set(obj, <span class="number">2</span>).set(<span class="number">1</span>, <span class="number">1</span>).set(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'map has 1: '</span>, map.has(<span class="number">1</span>)); <span class="comment">// map has 1:  true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'value of 1: '</span>, map.get(<span class="number">1</span>)); <span class="comment">// value of 1: 2</span></span><br><span class="line">map.delete(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'map has 1: '</span>, map.has(<span class="number">1</span>)); <span class="comment">// map has 1: false</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="WeakMap-Collection"><a href="#WeakMap-Collection" class="headerlink" title="WeakMap - Collection"></a>WeakMap - Collection</h1><ul>
+<li>WeakSet 과 비슷한 개념으WeakMap 의 key 가 약하게 참조된다.</li>
+<li>key는 객체참조 값만을가진다.</li>
+<li>iterable 객체가 아니다.</li>
+</ul>
+<p>ex:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"><span class="keyword">const</span> obj = &#123;<span class="attr">a</span>: <span class="string">'a'</span>&#125;;</span><br><span class="line">ws.set(obj, <span class="number">1</span>).set(&#123;<span class="attr">b</span>: <span class="number">2</span>&#125;, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(ws); <span class="comment">// WeakMap &#123;Object &#123;a: "a"&#125; =&gt; 1, Object &#123;b: 2&#125; =&gt; 2&#125;</span></span><br><span class="line"><span class="comment">/* after the garbage Collection has run */</span></span><br><span class="line"><span class="built_in">console</span>.log(ws); <span class="comment">// WeakMap &#123;Object &#123;a: "a"&#125; =&gt; 1&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="arrow-function"><a href="#arrow-function" class="headerlink" title="arrow function"></a>arrow function</h1><ul>
+<li>보다 간결한 구문을 지닌 익명함수이다.</li>
+<li>자기 고유의 this 를 갖지 않고, 외부 스코프의 this 를 그대로 가진다 (lexical<br>binding)</li>
+</ul>
+<p>ex:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> func = <span class="function">(<span class="params">x, y</span>) =&gt;</span> &#123; <span class="keyword">return</span> x + y; &#125;;</span><br><span class="line"><span class="comment">/* json을 리턴할 때에는 괄호를 넣어준다. */</span></span><br><span class="line"><span class="keyword">const</span> func2 = <span class="function"><span class="params">()</span> =&gt;</span> (&#123; <span class="attr">foo</span>: <span class="number">1</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="class"><a href="#class" class="headerlink" title="class"></a>class</h1><ul>
+<li>기존모델에 단지 새롭게 추가된 구문일 뿐,전혀 새로운 객체지향 모델이 아니다.</li>
+<li>생성자나 상속의 좀 더 간단하고 명확한 구문이 제공된다.</li>
+<li>생성자는 constructor 로 표현된다.</li>
+<li>클래스 바디는 중괄호 안에 두고 여기에 메소드를 function 키워드 없이 정의한다.</li>
+<li>메소드는 prototype 프로퍼티에 추가된다.</li>
+<li>class는 프로퍼티와 메소드로 이루어져 있다.</li>
+<li>class 는 extends 구문으로 다른 class 를 상속한다.</li>
+<li>자식 클래스에 constructor 가 없으면 부모의 그것이 자동으로 호출된다.</li>
+<li>생성자에서 super 키워드를 통해 상속 계층을 구현한다. this 보다 먼저 사용하지 않으면 예외가 발생한다.</li>
+<li>static 키워드를 통해 정적 메소드를 만들 수 있다. 이 메소드는 클래스 prototype 프로퍼티가 아닌 클래스 자체 메소드<br>다. (유틀리티 함수 작성에 쓰인다.)</li>
+</ul>
+<p>ex:</p>
+<ol>
+<li><p>일반 예제</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">        <span class="keyword">this</span>.x = x;</span><br><span class="line">        <span class="keyword">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> distance(a, b) &#123;</span><br><span class="line">        <span class="keyword">const</span> dx = a.x - b.x;</span><br><span class="line">        <span class="keyword">const</span> dy = a.y - b.y;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(dx*dx + dy*dy);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> Point(<span class="number">5</span>, <span class="number">5</span>);</span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> Point(<span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line"><span class="built_in">console</span>.log(Point.distance(p1, p2)); <span class="comment">// 7.0710678118654755</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>상속</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    speak() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' makes a noise.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lion</span> <span class="keyword">extends</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">    speak() &#123;</span><br><span class="line">        <span class="keyword">super</span>.speak();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' roars.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> lion = <span class="keyword">new</span> Lion(<span class="string">'happy'</span>);</span><br><span class="line">lion.speak();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="Template-string"><a href="#Template-string" class="headerlink" title="Template string"></a>Template string</h1><ul>
+<li>백틱(Backtick)을 이용해 문자열을 만드는 새로운 방법</li>
+<li>코드의 가독성을 높여준다.</li>
+<li>${} 표현식을 사용하여 변수, 함수, 연산식 등을 표현 할 수 있다.</li>
+</ul>
+<p>ex:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">'dowon'</span>;</span><br><span class="line"><span class="keyword">const</span> myStr = <span class="string">`Hi <span class="subst">$&#123;name&#125;</span>. Have a great day!`</span>;</span><br><span class="line"><span class="built_in">console</span>.log(myStr); <span class="comment">// Hi dowon. Have a great day!</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"string text line 1\n"</span>+</span><br><span class="line"><span class="string">"string text line 2"</span>);</span><br><span class="line"><span class="comment">/* "string text line 1</span></span><br><span class="line"><span class="comment"> string text line 2" */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`string text line 1</span></span><br><span class="line"><span class="string">string text line 2`</span>);</span><br><span class="line"><span class="comment">/* "string text line 1</span></span><br><span class="line"><span class="comment"> string text line 2" */</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Fifteen is <span class="subst">$&#123;a + b&#125;</span> and not <span class="subst">$&#123;<span class="number">2</span> * a + b&#125;</span>.`</span>); <span class="comment">// Fifteen is 15 and not 20.</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="function"><span class="params">()</span> =&gt;</span> <span class="string">"test"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`a: =&gt; <span class="subst">$&#123;a()&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="for-of-구문"><a href="#for-of-구문" class="headerlink" title="for~of 구문"></a>for~of 구문</h1><ul>
+<li>for~in 문은 객체의 열거가능한 모든 속성에 대해 반복했다면, for ~ of 문은 컬렉션의 요소를 반복.</li>
+<li>forEach(), for in 구문과 달리, break, continue, 그리고 return 구문과 함께 사용할 수 있습니다.</li>
+<li>for~of 루프 구문은 data를 순회하기 위한 구문</li>
+<li>배열 뿐만 아니라 Collection 객체, DOM NodeList 등등 을 다를수 있다.</li>
+</ul>
+<p>ex)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> chr <span class="keyword">of</span> <span class="string">"12"</span>) &#123;</span><br><span class="line"><span class="built_in">console</span>.log(chr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="keyword">let</span> iterable = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> iterable = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>([<span class="number">0x00</span>, <span class="number">0xff</span>]);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 255</span></span><br><span class="line"><span class="keyword">let</span> iterable = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">"a"</span>, <span class="number">1</span>], [<span class="string">"b"</span>, <span class="number">2</span>], [<span class="string">"c"</span>, <span class="number">3</span>]]);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> entry <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(entry);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// [a, 1]</span></span><br><span class="line"><span class="comment">// [b, 2]</span></span><br><span class="line"><span class="comment">// [c, 3]</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> iterable = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h1><ul>
+<li>Iterator 는 새로운 문법이나 built-in 이 아니라 프로토콜(약속)이다.</li>
+<li>간단한 약속만 지키면 누구나 만들수 있다.</li>
+<li>Set Map Array 등이 Iterator 객체이다.</li>
+<li>Symbol.iterator 를 Key 로 갖는 속성이 반드시 존재해야 한다.</li>
+<li>다음 규칙에 따라 next() 메서드를 구현한 객체를 iterator 라고 한다:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">아래의 두 속성을 가지는 객체를 리턴하며 인자가 없는 함수:</span><br><span class="line">1. <span class="keyword">done</span> (boolean)</span><br><span class="line">    - iterator 가 순회를 모두 마쳤을 경우 <span class="literal">true</span></span><br><span class="line">    - iterator 가 순회할 다음 value 가 존재할 경우 <span class="literal">false</span></span><br><span class="line">2. value - iterator 에 의해 리턴될 값. <span class="keyword">done</span> 이 <span class="literal">true</span> 일 경우 생략 가능</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>ex:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iterable = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      i: <span class="number">0</span>,</span><br><span class="line">      next() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.i &lt; <span class="number">3</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="keyword">this</span>.i++, <span class="attr">done</span>: <span class="literal">false</span> &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">of</span> iterable) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Rest-Parameter-와-Default-Parameter"><a href="#Rest-Parameter-와-Default-Parameter" class="headerlink" title="Rest Parameter 와 Default Parameter"></a>Rest Parameter 와 Default Parameter</h1><p>이건 코드로 확인하는게 가장 편하다.</p>
+<ol>
+<li><p>rest parameter</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 사용법은 아래와 같다.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a, b, ...theArgs</span>) </span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ex</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">restParam</span>(<span class="params">...arg</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> val <span class="keyword">of</span> arg) <span class="built_in">console</span>.log(val);</span><br><span class="line">&#125;</span><br><span class="line">restParam(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="comment">// es2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">restParam2</span>(<span class="params">first, ...arg</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(first); <span class="comment">// 시작</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> val <span class="keyword">of</span> arg) <span class="built_in">console</span>.log(val);</span><br><span class="line">    <span class="comment">// 1</span></span><br><span class="line">    <span class="comment">// 2</span></span><br><span class="line">    <span class="comment">// 3</span></span><br><span class="line">    <span class="comment">// 4</span></span><br><span class="line">    <span class="comment">// 5</span></span><br><span class="line">&#125;</span><br><span class="line">restParam(<span class="string">'시작'</span>, <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Default Parameter</p>
+<ul>
+<li>parameter 값이 없을 시 Default로 값을 넣어준다.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defaultParam</span>(<span class="params">a = <span class="string">'test'</span>, b = <span class="string">'done'</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`a: <span class="subst">$&#123;a&#125;</span>`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`b: <span class="subst">$&#123;b&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line">defaultParam();</span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="기타"><a href="#기타" class="headerlink" title="기타"></a>기타</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> &#123;a,b&#125; = obj;</span><br><span class="line"><span class="built_in">console</span>.log(a,b); <span class="comment">// 12</span></span><br><span class="line"><span class="keyword">const</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> aCopy = [...a];</span><br><span class="line"><span class="built_in">console</span>.log(aCopy);</span><br></pre></td></tr></table></figure>
+            
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://mayajuni.github.io/2016/12/05/es2015/" data-id="ckarflz8l0008yo046q8hyvua" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://mayajuni.github.io/2016/12/05/es2015/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://mayajuni.github.io/2016/12/05/es2015/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2016/12/30/2016년-회고/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    2016년 회고
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/11/30/angular2-실무-프로젝트-회고/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">angular2 실무 프로젝트 회고</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+
+    <section id="comments">
+    
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+</div>
+
+    
+    </section>
+
+</section>
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner" id="profileDetail" style="display: none;">
+        <div class="base-info profile-block">
+            <img id="avatar" style="border-radius : 50%;-webkit-border-radius : 50%;-moz-border-radius : 50%;" src="https://avatars.githubusercontent.com/u/4123095?v=3" />
+            <h2 id="name"></h2>
+            <h3 id="title">Web Developer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Seoul, Korea</span>
+            <!--<a id="follow" target="_blank" href="https://github.com/mayajuni">FOLLOW</a>-->
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                <a href="https://github.com/mayajuni?tab=repositories">
+                    <div id="repos"></div>
+                    <span>REPOS</span>
+                </a>
+            </div>
+            <div class="article-info-block">
+                <a href="https://github.com/mayajuni/followers">
+                    <div id="followers"></div>
+                    <span>FOLLOWERS</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/mayajuni" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://www.facebook.com/dongjun.kwon.39" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/feed.xml" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+        <!--<div class="article-info profile-block">
+            <div class="article-info-block">
+                11
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                17
+                <span>tags</span>
+            </div>
+        </div>-->
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ExpressJs/">ExpressJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NoSql/">NoSql</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Typescript/">Typescript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Typescript/nodeJs/">nodeJs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/eos/">eos</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/eos/eosjs/">eosjs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/es2015/">es2015</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">server</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/회고/">회고</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/회고/">회고</a></p>
+                            <p class="item-title"><a href="/2020/01/28/CTO로-한해를-보내며-2019-회고/" class="title">CTO로 한해를 보내며.. (2019 회고)</a></p>
+                            <p class="item-date"><time datetime="2020-01-28T05:19:00.000Z" itemprop="datePublished">2020-01-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/server/">server</a></p>
+                            <p class="item-title"><a href="/2020/01/17/Lambda를-선택한-이유/" class="title">Serverless를 선택한 이유(Lambda, Altas)</a></p>
+                            <p class="item-date"><time datetime="2020-01-17T03:25:00.000Z" itemprop="datePublished">2020-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a></p>
+                            <p class="item-title"><a href="/2018/08/01/EosJS-API-사용-1/" class="title">EosJS API 사용</a></p>
+                            <p class="item-date"><time datetime="2018-08-01T01:32:00.000Z" itemprop="datePublished">2018-08-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/eos/">eos</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/eos/eosjs/">eosjs</a></p>
+                            <p class="item-title"><a href="/2018/07/16/eosJs-시작하기/" class="title">eosJs 시작하기</a></p>
+                            <p class="item-date"><time datetime="2018-07-16T05:19:00.000Z" itemprop="datePublished">2018-07-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/NoSql/">NoSql</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/NoSql/rethinkDB/">rethinkDB</a></p>
+                            <p class="item-title"><a href="/2017/03/27/RethinkDB-시작하기/" class="title">RethinkDB 소개</a></p>
+                            <p class="item-date"><time datetime="2017-03-27T04:18:00.000Z" itemprop="datePublished">2017-03-27</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2016/">2016</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2019/">2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NoSql/">NoSql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/">block chain</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eos/">eos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eosjs/">eosjs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es2015/">es2015</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expressjs/">expressjs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lambda/">lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rethinkDb/">rethinkDb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/router/">router</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/serverless/">serverless</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">typescript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회고/">회고</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/2016/" style="font-size: 10px;">2016</a> <a href="/tags/2019/" style="font-size: 10px;">2019</a> <a href="/tags/NoSql/" style="font-size: 10px;">NoSql</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/block-chain/" style="font-size: 10px;">block chain</a> <a href="/tags/eos/" style="font-size: 10px;">eos</a> <a href="/tags/eosjs/" style="font-size: 15px;">eosjs</a> <a href="/tags/es2015/" style="font-size: 10px;">es2015</a> <a href="/tags/expressjs/" style="font-size: 20px;">expressjs</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/nodejs/" style="font-size: 15px;">nodejs</a> <a href="/tags/rethinkDb/" style="font-size: 10px;">rethinkDb</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/serverless/" style="font-size: 10px;">serverless</a> <a href="/tags/typescript/" style="font-size: 15px;">typescript</a> <a href="/tags/회고/" style="font-size: 20px;">회고</a>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+
+
+        
+        <!--<div id="toTop" class="fa fa-angle-up"></div>-->
+    </div>
+</aside>
+<script>
+    function escape(text) {
+        return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function numberic(num) {
+        if (!num) return null;
+        if (num === 1000) return 1;
+        if (num < 1000) return num;
+        num = num / 1000;
+        if (num > 10) return parseInt(num, 10) + 'k';
+        return num.toFixed(1) + 'k';
+    }
+
+    var url = 'https://api.github.com/users/mayajuni';
+
+
+    $.get(url, function(data) {
+        var defaults = '0';
+        data.name = escape(data.name);
+        data.public_repos = numberic(data.public_repos) || defaults;
+        data.public_gists = numberic(data.public_gists) || defaults;
+        data.followers = numberic(data.followers) || defaults;
+
+        $('#avatar').attr("src", data.avatar_url);
+        $('#avatar-header').attr("src", data.avatar_url);
+        $("#name").html(data.name);
+        $("#title").html(data.bio);
+        $("#repos").html(data.public_repos);
+        $("#location").html(data.location);
+        $("#followers").html(data.followers);
+        $("#profileDetail").show();
+    });
+</script>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2020 Dongjun Kwon<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+        </div>
+    </div>
+</footer>
+        
+    
+<script>
+    var disqus_shortname = 'mayajuni';
+    
+    
+    var disqus_url = 'https://mayajuni.github.io/2016/12/05/es2015/';
+    
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
